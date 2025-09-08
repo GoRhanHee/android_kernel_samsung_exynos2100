@@ -62,7 +62,7 @@ build_kernel(){
   echo "${GREEN}***** Compiling kernel for ${VARIANT} *****${STD}"
   [ ! -d "out" ] && mkdir out
   make -j$(nproc) -C $(pwd) $KERNEL_MAKE_ENV hari_${VARIANT}_defconfig
-  make -j$(nproc) -C $(pwd) $KERNEL_MAKE_ENV
+  make -j$(nproc) -C $(pwd) $KERNEL_MAKE_ENV || exit 1
 
   [ -e arch/arm64/boot/Image.gz ] && cp arch/arm64/boot/Image.gz $(pwd)/out/Image.gz
   if [ -e arch/arm64/boot/Image ]; then
